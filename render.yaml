@@ -1,8 +1,8 @@
 databases:
   - name: mysitedb
     plan: free
-    databaseName: request_db
-    user: hayashi_keita
+    databaseName: requestdb
+    user: hayashikeita
 
 services:
   - type: web
@@ -10,7 +10,7 @@ services:
     name: request-app
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn bookproject.asgi:application -kuvicorn.workers.UvicornWorker"
+    startCommand: "python -m gunicorn bookproject.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
