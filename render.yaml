@@ -1,8 +1,8 @@
 databases:
   - name: mysitedb
     plan: free
-    databaseName: request-db
-    user: hayashi-keita
+    databaseName: request_db
+    user: hayashi_keita
 
 services:
   - type: web
