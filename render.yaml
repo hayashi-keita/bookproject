@@ -1,0 +1,20 @@
+databases:
+  - name: mysitedb
+    plan: free
+    databaseName: request-db
+    user: hayashi-keita
+
+services:
+  - type: web
+    plan: free
+    name: request-app
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn bookproject.asgi:application -kuvicorn.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mysitedb
+          property: connectionString
+      - key: WEB_CONCURRENCY
+        value: 4
